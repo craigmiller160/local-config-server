@@ -10,8 +10,8 @@ Also, please use the run.sh script to run it, rather than executing the command 
 
 # Running in Production
 
-In addition to the development rule, the username and password for accessing the server must be provided through environment variables. CONFIG_SERVER_USER and CONFIG_SERVER_PASSWORD, respectively.
-
-The following JVM arguments must be set:
+The following properties should be provided via environment variables: 
 
 `spring.config.location=classpath:/config/common/,classpath:/config/prod/`
+`spring.cloud.config.server.security.username=WHATEVER_YOU_WANT`
+`spring.cloud.config.server.security.password=WHATEVER_YOU_WANT`
