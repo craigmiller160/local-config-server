@@ -14,4 +14,4 @@ In addition to the development rule, the username and password for accessing the
 
 The following JVM arguments must be set:
 
-`spring.config.location=classpath:/config/common/,classpath:/config/prod`
+`spring.config.location=classpath:/config/common/,classpath:/config/prod/`
