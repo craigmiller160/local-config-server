@@ -17,7 +17,7 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
             val encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
             auth.inMemoryAuthentication()
                     .withUser("config-server-user")
-                    .password("")
+                    .password("{bcrypt}\$2a\$10\$lz.0VwmpdubNVy4quE57FOk3FYTcB6GGSyKCA9RG0Xaj00ojJ5QXW")
                     .roles(SecurityConstants.DEFAULT_ROLE)
                     .and()
                     .passwordEncoder(encoder)
