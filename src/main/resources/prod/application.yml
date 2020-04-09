@@ -1,0 +1,9 @@
+server:
+  port: 8002
+spring:
+  cloud:
+    config:
+      server:
+        security:
+          username: ${CONFIG_SERVER_USER}
+          password: ${CONFIG_SERVER_PASSWORD}

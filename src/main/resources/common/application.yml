@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 7002
 spring:
   cloud:
     config:
@@ -11,5 +11,5 @@ spring:
           search-paths:
             - '*'
         security:
-          username: config-server-user
+          username: user
           password: '{bcrypt}$2a$10$lz.0VwmpdubNVy4quE57FOk3FYTcB6GGSyKCA9RG0Xaj00ojJ5QXW'
