@@ -1,5 +1,6 @@
 package io.craigmiller160.localconfigserver.config
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -10,14 +11,17 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories
 
 @Configuration
 @EnableWebSecurity
-class WebSecurityConfig : WebSecurityConfigurerAdapter() {
+class WebSecurityConfig (
+        @Value("\${spring.cloud.config.server.security.username}") private val userName: String,
+        @Value("\${spring.cloud.config.server.security.password}") private val password: String
+) : WebSecurityConfigurerAdapter() {
 
     override fun configure(auth: AuthenticationManagerBuilder?) {
         auth?.let {
             val encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
             auth.inMemoryAuthentication()
-                    .withUser("config-server-user")
-                    .password("{bcrypt}\$2a\$10\$lz.0VwmpdubNVy4quE57FOk3FYTcB6GGSyKCA9RG0Xaj00ojJ5QXW")
+                    .withUser(userName)
+                    .password(password)
                     .roles(SecurityConstants.DEFAULT_ROLE)
                     .and()
                     .passwordEncoder(encoder)

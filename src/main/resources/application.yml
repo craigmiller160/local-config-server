@@ -10,3 +10,6 @@ spring:
           password: ${GIT_HUB_PASSWORD}
           search-paths:
             - '*'
+        security:
+          username: config-server-user
+          password: '{bcrypt}$2a$10$lz.0VwmpdubNVy4quE57FOk3FYTcB6GGSyKCA9RG0Xaj00ojJ5QXW'
