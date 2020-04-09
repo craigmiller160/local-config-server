@@ -31,10 +31,11 @@ class WebSecurityConfig (
     override fun configure(http: HttpSecurity?) {
         http?.let {
             http.csrf().disable()
-                    .httpBasic()
-                    .and()
                     .authorizeRequests()
-                    .anyRequest().hasRole(SecurityConstants.DEFAULT_ROLE)
+                    .antMatchers("/actuator/**").permitAll()
+                    .antMatchers("/**").hasRole(SecurityConstants.DEFAULT_ROLE)
+                    .and()
+                    .httpBasic()
                     .and()
                     .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
