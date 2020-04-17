@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      server:
+        security:
+          username: user
+          password: '{bcrypt}$2a$10$lz.0VwmpdubNVy4quE57FOk3FYTcB6GGSyKCA9RG0Xaj00ojJ5QXW'
