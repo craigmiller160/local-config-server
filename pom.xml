@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.craigmiller160</groupId>
     <artifactId>local-config-server</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0-SNAPSHOT</version>
     <name>local-config-server</name>
     <description>A locally running config server for my applications.</description>
 
