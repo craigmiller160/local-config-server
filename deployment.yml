@@ -19,6 +19,15 @@ spec:
           image: local-config-server:1.2.0-SNAPSHOT
           ports:
             - containerPort: 8002
+          env:
+            - name: spring.profiles.active
+              value: prod
+            - name: spring.config.location
+              value: classpath:/config/common/,classpath:/config/prod/
+            - name: spring.cloud.config.server.security.password
+              value: \{bcrypt\}$2a$10$brIjl4/GAjWZGvo/lKxUAe8/I7Aqas4NIo8eIVSrNF2Y0UbpCmJd2
+            - name: spring.cloud.config.server.security.username
+            - name: GIT_HUB_PASSWORD
           imagePullPolicy: Never
 ---
 apiVersion: v1
