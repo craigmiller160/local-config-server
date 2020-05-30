@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: local-config-server
-          image: local-config-server:v1.2.0-SNAPSHOT
+          image: local-config-server:1.2.0-SNAPSHOT
           ports:
             - containerPort: 8002
           imagePullPolicy: Never
