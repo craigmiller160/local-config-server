@@ -18,3 +18,16 @@ spec:
           ports:
             - containerPort: 8002
           imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: local-config-server
+spec:
+  selector:
+    app: local-config-server
+  ports:
+    - port: 8002
+      targetPort: 8002
+      nodePort: 30002
+  type: LoadBalancer

@@ -14,3 +14,5 @@ VERSION=$version
 mvn clean package
 eval $(minikube docker-env)
 docker build -t $NAME:$VERSION .
+kubectl create -f deployment.yml
+minikube service local-config-server
