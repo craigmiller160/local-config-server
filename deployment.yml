@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: local-config-server
+  labels:
+    app: local-config-server
 spec:
   replicas: 1
   selector:
@@ -30,4 +32,4 @@ spec:
     - port: 8002
       targetPort: 8002
       nodePort: 30002
-  type: LoadBalancer
+  type: NodePort
