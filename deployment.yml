@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: local-config-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: local-config-server
+  template:
+    metadata:
+      labels:
+        app: local-config-server
+    spec:
+      containers:
+        - name: local-config-server
+          image: local-config-server:v1.2.0-SNAPSHOT
+          ports:
+            - containerPort: 8002
+          imagePullPolicy: Never
