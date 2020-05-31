@@ -25,9 +25,17 @@ spec:
             - name: spring.config.location
               value: classpath:/config/common/,classpath:/config/prod/
             - name: spring.cloud.config.server.security.password
-              value: \{bcrypt\}$2a$10$brIjl4/GAjWZGvo/lKxUAe8/I7Aqas4NIo8eIVSrNF2Y0UbpCmJd2
+              value: "{bcrypt}$2a$10$brIjl4/GAjWZGvo/lKxUAe8/I7Aqas4NIo8eIVSrNF2Y0UbpCmJd2"
             - name: spring.cloud.config.server.security.username
+              valueFrom:
+                secretKeyRef:
+                  name: configserver-creds
+                  key: username
             - name: GIT_HUB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: github
+                  key: password
           imagePullPolicy: Never
 ---
 apiVersion: v1
