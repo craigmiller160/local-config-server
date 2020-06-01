@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.factory.PasswordEncoderFactories
 
 @Configuration
@@ -18,10 +19,11 @@ class WebSecurityConfig (
 
     override fun configure(auth: AuthenticationManagerBuilder?) {
         auth?.let {
-            val encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
-            auth.inMemoryAuthentication()
+            val encoder = BCryptPasswordEncoder()
+            val encodedPassword = encoder.encode(password)
+            it.inMemoryAuthentication()
                     .withUser(userName)
-                    .password(password)
+                    .password(encodedPassword)
                     .roles(SecurityConstants.DEFAULT_ROLE)
                     .and()
                     .passwordEncoder(encoder)
