@@ -1,5 +1,7 @@
 package io.craigmiller160.localconfigserver.config
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
@@ -8,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.security.crypto.factory.PasswordEncoderFactories
 
 @Configuration
 @EnableWebSecurity
@@ -17,12 +18,14 @@ class WebSecurityConfig (
         @Value("\${spring.cloud.config.server.security.password}") private val password: String
 ) : WebSecurityConfigurerAdapter() {
 
+    private val log: Logger = LoggerFactory.getLogger(WebSecurityConfigurerAdapter::class.java)
+
     override fun configure(auth: AuthenticationManagerBuilder?) {
         auth?.let {
             val encoder = BCryptPasswordEncoder()
-            val encodedPassword = encoder.encode("F}.^P+rAjy{KHVJOY2tn") // TODO make property
+            val encodedPassword = encoder.encode(password)
             it.inMemoryAuthentication()
-                    .withUser("config-server-user") // TODO make property
+                    .withUser(userName)
                     .password(encodedPassword)
                     .roles(SecurityConstants.DEFAULT_ROLE)
                     .and()
