@@ -27,7 +27,10 @@ spec:
             - name: spring.config.location
               value: classpath:/config/common/,classpath:/config/prod/
             - name: spring.cloud.config.server.security.password
-              value: "{bcrypt}$$2a$$10$$brIjl4/GAjWZGvo/lKxUAe8/I7Aqas4NIo8eIVSrNF2Y0UbpCmJd2"
+              valueFrom:
+                secretKeyRef:
+                  name: configserver-creds
+                  key: password
             - name: spring.cloud.config.server.security.username
               valueFrom:
                 secretKeyRef:

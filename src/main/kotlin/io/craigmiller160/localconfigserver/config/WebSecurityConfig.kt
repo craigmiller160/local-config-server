@@ -20,9 +20,9 @@ class WebSecurityConfig (
     override fun configure(auth: AuthenticationManagerBuilder?) {
         auth?.let {
             val encoder = BCryptPasswordEncoder()
-            val encodedPassword = encoder.encode(password)
+            val encodedPassword = encoder.encode("F}.^P+rAjy{KHVJOY2tn") // TODO make property
             it.inMemoryAuthentication()
-                    .withUser(userName)
+                    .withUser("config-server-user") // TODO make property
                     .password(encodedPassword)
                     .roles(SecurityConstants.DEFAULT_ROLE)
                     .and()
